@@ -79,7 +79,7 @@
       if (this.screen_resolution) {
         var resolution = this.getScreenResolution();
         if (typeof resolution !== 'undefined'){ // headless browsers, such as phantomjs
-          keys.push(this.getScreenResolution().join('x'));
+          keys.push(resolution.join('x'));
         }
       }
       keys.push(new Date().getTimezoneOffset());
