@@ -85,7 +85,7 @@
       keys.push(new Date().getTimezoneOffset());
       keys.push(this.hasSessionStorage());
       keys.push(this.hasLocalStorage());
-      keys.push(!!window.indexedDB);
+      keys.push(this.hasIndexDb());
       //body might not be defined at this point or removed programmatically
       if(document.body){
         keys.push(typeof(document.body.addBehavior));
@@ -184,6 +184,14 @@
     hasSessionStorage: function () {
       try{
         return !!window.sessionStorage;
+      } catch(e) {
+        return true; // SecurityError when referencing it means it exists
+      }
+    },
+
+    hasIndexDb: function () {
+      try{
+        return !!window.indexedDB;
       } catch(e) {
         return true; // SecurityError when referencing it means it exists
       }
